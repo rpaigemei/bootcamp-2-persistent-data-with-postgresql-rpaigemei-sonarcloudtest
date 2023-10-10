@@ -61,15 +61,19 @@ try {
           const listing = await Listing.findAll();
           console.log(JSON.stringify(listing, null, 2));
       }
+
     /* 
       Find the document that contains data corresponding to Library West, then log it to the console. 
       Learn more about the finder methods available to sequelize models - https://sequelize.org/docs/v6/core-concepts/model-querying-finders/
     */
-    async function findLibraryWest() {
-       //ADD CODE HERE
-      console.log('Finding Library West');
+      async function findLibraryWest() {
+        //ADD CODE HERE
+        console.log('Finding Library West');
 
-    }
+        const listing = await Listing.findOne({where: {name: 'Library West'}});
+        console.log(JSON.stringify(listing));
+        
+      }
 
     /*
       Find the document with the code 'CABL' and remove this listing.
@@ -81,16 +85,16 @@ try {
       async function removeCable() {
          //ADD CODE HERE
         console.log('Removing Cable BLDG');
-    }
+      }
 
     /*
       Create a listing for the new Data Science and IT (DSIT) Building. Add the code and name to the database.
       Learn more about the finder methods available to sequelize models - https://sequelize.org/docs/v6/core-concepts/model-querying-finders/
     */
-    async function addDSIT() {
-       //ADD CODE HERE
-      console.log('Adding the new DSIT BLDG that will be across from Reitz union. Bye Bye CSE, Hub, and French Fries.');
-    }
+      async function addDSIT() {
+        //ADD CODE HERE
+        console.log('Adding the new DSIT BLDG that will be across from Reitz union. Bye Bye CSE, Hub, and French Fries.');
+      }
    
 
     /*
@@ -98,11 +102,11 @@ try {
       Find the listing, update it with the correct address (Google address), and then log the updated listing in the database and use console.log to inspect it.
       Learn more about the finder methods available to sequelize models - https://sequelize.org/docs/v6/core-concepts/model-querying-finders/ 
     */
-    async function updatePhelpsLab() {
-       //ADD CODE HERE
-       console.log('UpdatingPhelpsLab.');
- 
-    }
+      async function updatePhelpsLab() {
+        //ADD CODE HERE
+        console.log('UpdatingPhelpsLab.');
+  
+      }
 
     
    console.log("Use these calls to test that your functions work. Use console.log statements in each so you can look at the terminal window to see what is executing. Also check the database.")
