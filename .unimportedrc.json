@@ -1,0 +1,10 @@
+{
+  "ignoreUnresolved": [],
+  "ignoreUnused": [
+    "pg"
+  ],
+  "ignoreUnimported": [
+    "queries.js",
+    "testDBConnection.js"
+  ]
+}
