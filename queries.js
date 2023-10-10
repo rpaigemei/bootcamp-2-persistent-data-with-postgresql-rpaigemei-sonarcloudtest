@@ -98,6 +98,8 @@ try {
       async function addDSIT() {
         //ADD CODE HERE
         console.log('Adding the new DSIT BLDG that will be across from Reitz union. Bye Bye CSE, Hub, and French Fries.');
+
+        const [listing, created] = await Listing.findOrCreate({where: {code: 'DSIT'}, defaults: {name: 'Data Science and IT Building'}});
       }
    
 
