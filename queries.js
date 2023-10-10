@@ -85,6 +85,10 @@ try {
       async function removeCable() {
          //ADD CODE HERE
         console.log('Removing Cable BLDG');
+
+        const listing = await Listing.findOne({where: {code: 'CABL'}});
+        await Listing.destroy({where: {code: 'CABL'}});
+        console.log(JSON.stringify(listing));
       }
 
     /*
