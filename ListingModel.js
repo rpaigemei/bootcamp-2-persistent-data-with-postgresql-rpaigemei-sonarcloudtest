@@ -15,7 +15,7 @@ import { Sequelize, Model, DataTypes } from '@sequelize/core';
 */
 
 //ADD CODE HERE to connect to you database
-const sequelize = new Sequelize(process.env.API_URL);
+  const sequelize = new Sequelize(process.env.API_URL);
 
 /* Create your Sequalize Model for Listing */
 /*Hint: Take a look at listings.json to figure out the model attributes we need to define.

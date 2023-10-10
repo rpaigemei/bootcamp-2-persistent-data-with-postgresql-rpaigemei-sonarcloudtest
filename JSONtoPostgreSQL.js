@@ -23,7 +23,7 @@
   Read - artilce to learn more about environment variables - https://medium.com/the-node-js-collection/making-your-node-js-work-everywhere-with-environment-variables-2da8cdf6e786
 */
 //ADD CODE HERE to connect to you database
-const sequelize = new Sequelize(process.env.API_URL);
+  const sequelize = new Sequelize(process.env.API_URL);
 
 //Testing that the .env file is working - This should print out the port number
 console.log(process.env.PORT); //Should print out 8080 
