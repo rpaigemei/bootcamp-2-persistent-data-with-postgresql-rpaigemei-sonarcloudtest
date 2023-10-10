@@ -5,6 +5,7 @@ import { Sequelize, Model, DataTypes,  QueryTypes, sql } from '@sequelize/core';
   import 'dotenv/config';
 
   import { Listing } from './ListingModel.js';
+
 /* Connect to your database */
 //ADD CODE HERE to connect to you database - same code you put for JSONtoPostgreSQL.js and ListingModel.js
   const sequelize = new Sequelize(process.env.API_URL);
@@ -99,7 +100,7 @@ try {
         //ADD CODE HERE
         console.log('Adding the new DSIT BLDG that will be across from Reitz union. Bye Bye CSE, Hub, and French Fries.');
 
-        const [listing, created] = await Listing.findOrCreate({where: {code: 'DSIT'}, defaults: {name: 'Data Science and IT Building'}});
+        await Listing.create({code: 'DSIT', name: 'Data Science and IT Building'});
       }
    
 
@@ -111,17 +112,23 @@ try {
       async function updatePhelpsLab() {
         //ADD CODE HERE
         console.log('UpdatingPhelpsLab.');
-  
+
+        const listing = await Listing.findOne({where: {name: 'Phelps Laboratory'}});
+        listing.address = '1953 Museum Rd, Gainesville, FL 32603';
+        await listing.save();
+
+        console.log(JSON.stringify(listing));
       }
 
     
-   console.log("Use these calls to test that your functions work. Use console.log statements in each so you can look at the terminal window to see what is executing. Also check the database.")
+   console.log('Use these calls to test that your functions work. Use console.log statements in each so you can look at the terminal window to see what is executing. Also check the database.')
+   
    //Calling all the functions to test them
-   retrieveAllListings() 
-   removeCable(); 
-   addDSIT();
-   updatePhelpsLab();
-   findLibraryWest();
+   await retrieveAllListings() 
+   await removeCable(); 
+   await addDSIT();
+   await updatePhelpsLab();
+   await findLibraryWest();
        
   
 
