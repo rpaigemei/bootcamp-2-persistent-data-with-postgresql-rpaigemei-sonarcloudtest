@@ -87,7 +87,7 @@ try {
    
 
     /*
-      Phelps Memorial Hospital Center's address is incorrect.
+      The Phelps Lab address is incorrect.
       Find the listing, update it with the correct address (Google address), and then log the updated listing in the database and use console.log to inspect it.
       Learn more about the finder methods available to sequelize models - https://sequelize.org/docs/v6/core-concepts/model-querying-finders/ 
     */

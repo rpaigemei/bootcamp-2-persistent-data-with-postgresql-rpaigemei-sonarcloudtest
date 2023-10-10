@@ -13,7 +13,9 @@ import { Sequelize, Model, DataTypes } from '@sequelize/core';
   Good Implementation - const sequelize = new Sequelize(process.env.API_URL);
   Read - artilce to learn more about environment variables - https://medium.com/the-node-js-collection/making-your-node-js-work-everywhere-with-environment-variables-2da8cdf6e786
 */
+
 //ADD CODE HERE to connect to you database
+const sequelize = new Sequelize(process.env.API_URL);
 
 /* Create your Sequalize Model for Listing */
 /*Hint: Take a look at listings.json to figure out the model attributes we need to define.
@@ -24,6 +26,18 @@ import { Sequelize, Model, DataTypes } from '@sequelize/core';
 const Listing = sequelize.define('Listing', {
   // Model attributes are defined here
   //ADD CODE HERE
+  code: {
+    type: DataTypes.STRING,
+  },
+  name: {
+    type: DataTypes.STRING,
+  },
+  coordinates: {
+    type: DataTypes.JSONB
+  },
+  address: {
+    type: DataTypes.STRING
+  }
 }, {
   // Other model options go here
   tableName: 'Listings'

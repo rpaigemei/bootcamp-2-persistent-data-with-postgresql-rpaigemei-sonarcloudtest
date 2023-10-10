@@ -23,41 +23,50 @@
   Read - artilce to learn more about environment variables - https://medium.com/the-node-js-collection/making-your-node-js-work-everywhere-with-environment-variables-2da8cdf6e786
 */
 //ADD CODE HERE to connect to you database
+const sequelize = new Sequelize(process.env.API_URL);
 
 //Testing that the .env file is working - This should print out the port number
 console.log(process.env.PORT); //Should print out 8080 
 console.log(process.env.API_Key); //Should print out "Key Not set - starter code only"
 
  try {
-  //Setup table in the DB
-  //Read more about Model Synchronization - https://sequelize.org/docs/v6/core-concepts/model-basics/#model-synchronization
+  // Setup table in the DB
+  // Read more about Model Synchronization - https://sequelize.org/docs/v6/core-concepts/model-basics/#model-synchronization
   await Listing.sync({ force: true });
   console.log("The table for the Listing model was just (re)created!");
   
-  /* This callback function read the listings.json file into memory (data) and stores errors in (err).
-      Write code to save the data into the listingData variable and then save each entry into the database.
-   */
+  /* 
+    This callback function read the listings.json file into memory (data) and stores errors in (err).
+    Write code to save the data into the listingData variable and then save each entry into the database.
+  */
   fs.readFile('listings.json', 'utf8', function(err, data) {
-    // Errors-Check out this resource for an idea of the general format err objects and Throwing an existing object.
+    // Errors - Check out this resource for an idea of the general format err objects and Throwing an existing object.
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw#throwing_an_existing_object
     if (err) throw err;
-    console.log(data);
+    // console.log(data);
 
-    //Save and parse the data from the listings.json file into a variable, so that we can iterate through each instance - Similar to Bootcamp#1
-   //ADD CODE HERE
-  
-     //Use Sequelize create a new row in our database for each entry in our listings.json file using the Listing model we created in ListingModel.js
+    // Save and parse the data from the listings.json file into a variable, so that we can iterate through each instance - Similar to Bootcamp#1
+    // ADD CODE HERE
+    const listingData = JSON.parse(data);
+    
+
+    // Use Sequelize create a new row in our database for each entry in our listings.json file using the Listing model we created in ListingModel.js
     // to https://sequelize.org/docs/v6/core-concepts/model-instances/#creating-an-instance
-     //ADD CODE HERE
-
+    // ADD CODE HERE
+    sequelize.sync()
+      .then(async() => {
+        for(let i = 0; i < listingData.entries.length; i++){
+          listingData.entries[i].coordinates = JSON.stringify(listingData.entries[i].coordinates);
+          await Listing.create(listingData.entries[i]);
+        }
+      })
     });
 } catch (error) {
   console.error('Unable to connect to the database:', error);
 }
 
-
- /* 
+/* 
   Once you've written + run the script, check out your ElephantSQL database to ensure that it saved everything correctly. 
- */
+*/
 
  
